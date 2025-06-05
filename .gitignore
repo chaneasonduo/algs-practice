@@ -1,0 +1,73 @@
+target
+.idea
+# 忽略编译生成的类文件
+
+*.class
+
+# 忽略打包生成的输出
+
+*.jar
+
+*.war
+
+*.ear
+
+*.zip
+
+*.tar.gz
+
+*.rar
+
+# 忽略 Maven 构建目录
+target/
+
+# 忽略 Gradle 构建目录和文件
+.gradle/
+build/
+out/
+
+*.gradle.kts
+
+*.gradle
+gradlew
+gradlew.bat
+
+# 忽略 IntelliJ IDEA 配置文件和目录
+.idea/
+
+*.iml
+
+*.ipr
+
+*.iws
+.idea_modules/
+
+# 忽略 Eclipse 配置文件和目录
+.classpath
+.project
+.settings/
+
+# 忽略 NetBeans 配置文件和目录
+nbproject/
+
+*.nb-config
+
+# 忽略其他常见的临时文件和目录
+
+*.log
+
+*.swp
+tmp/
+temp/
+
+*.tmp
+
+*.bak
+
+*.swp
+
+*~
+
+# 忽略系统文件
+.DS_Store
+Thumbs.db
