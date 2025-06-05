@@ -27,28 +27,34 @@ import java.util.Set;
  */
 public class LCR119_LongestConsecutive {
 
-    // 暴力解法
+    // 暴力递归
     public int solution0(int[] nums){
 
         int result = 0;
         for(int i=0; i< nums.length; i++){
             int num = nums[i];
-            int nextNum = num + 1;
-
             // search in array
-            for(int j =0; j<nums.length; j++){
-                if(nextNum==nums[j]){
-
-                }
-            }
+            int len = searchInArray(nums, num, 0);
             // if found, len + 1
-
+            if(len > result){
+                result = len;
+            }
             // if len > result, result = len
-
-
         }
-
         return result;
+    }
+    // 找到了返回下标，没找到返回-1
+    private int searchInArray(int[] array, int target, int len){
+        for(int i=0; i< array.length; i++){
+            if(array[i] == target){
+                len++;
+                // 注意，此处要修改len的值，，不然len无法正确返回
+                len = searchInArray(array, target+1, len);
+                // 注意，此处一定要break，因为如果存在重复元素，如两个0，第一个递归玩计算len后，还会往后遍历，再次计算
+                break;
+            }
+        }
+        return len;
     }
 
     public int solution1(int[] nums){
@@ -85,12 +91,26 @@ public class LCR119_LongestConsecutive {
 
         LCR119_LongestConsecutive alg = new LCR119_LongestConsecutive();
         int[] nums1 = new int[] {100,4,200,1,3,2};
-        int r1 = alg.solution1(nums1);
+        int r = 0;
+        System.out.println("======= case 1 =======");
+        r = alg.solution0(nums1);
+        System.out.println(r);
+        r = alg.solution1(nums1);
+        System.out.println(r);
 
+
+        System.out.println("======= case 2 =======");
         int[] nums2 = new int[]{0,3,7,2,5,8,4,6,0,1};
-        int r2 = alg.solution2(nums2);
+        r = alg.solution0(nums2);
+        System.out.println(r);
+        r = alg.solution1(nums2);
+        System.out.println(r);
 
-        System.out.println(r1);
-        System.out.println(r2);
+        System.out.println("======= case 3 =======");
+        int[] nums3 = new int[]{1,3,2,0,4,0};
+        r = alg.solution0(nums3);
+        System.out.println(r);
+        r = alg.solution1(nums3);
+        System.out.println(r);
     }
 }
