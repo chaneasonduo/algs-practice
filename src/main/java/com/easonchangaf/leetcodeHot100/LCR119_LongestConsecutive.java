@@ -57,7 +57,43 @@ public class LCR119_LongestConsecutive {
         return len;
     }
 
+    /**
+     * 递归中存在重复计算，比如，[0,3,5,2,1,4]这个序列。
+     *  1. 当遍历到第一个元素，0时，计算了2, 3, 4, 5 是否存在与列表中，
+     *  2. 当遍历到第二个元素，3时，还需要计算，4，5是不是存在，而第1步已经计算过了，是存在的。
+     *  3. 所以，可以将存在的结果缓存在一个set中，避免重复遍历数组进行判断，减少计算。
+     */
     public int solution1(int[] nums){
+        Set<Integer> set = new HashSet<>();
+        for(int num: nums){
+            set.add(num);
+        }
+
+        int result = 0;
+        for(int item: set){
+            int len = 0;
+            len = searchInArrayWithSet(item, len, set);
+
+            if(len > result){
+                result = len;
+            }
+        }
+
+        return result;
+    }
+
+    private int searchInArrayWithSet(int target, int len, Set<Integer> set){
+        if(set.contains(target)){
+            len++;
+            len = searchInArrayWithSet(target + 1, len, set);
+        }
+        return len;
+    }
+
+    /**
+     * leetcode 答案
+     */
+    public int solutionLeetCode(int[] nums){
         Set<Integer> num_set = new HashSet<Integer>();
         for (int num : nums) {
             num_set.add(num);
@@ -82,10 +118,40 @@ public class LCR119_LongestConsecutive {
         return longestStreak;
     }
 
-    // 排序解法
-    public int solution2(int[] nums){
-        return 0;
+    /**
+     * 学习 leetcode 的思维
+     */
+    public int solutionMyLeetCode(int[] nums){
+        Set<Integer> set = new HashSet<Integer>();
+        for(int num : nums){
+            set.add(num);
+        }
+
+        int result = 0;
+
+        for(int item: set){
+            // 有比自己还小的值存在，一定不是最长
+            if(set.contains(item - 1)){
+                continue;
+            }
+
+            int currentNum = item;
+            // 初始值应该为1
+            int len = 1;
+            while (set.contains(currentNum + 1)){
+                len++;
+                currentNum++;
+            }
+
+            if( len > result){
+                result = len;
+            }
+        }
+
+        return result;
     }
+
+
 
     public static void main(String[] args) {
 
@@ -97,6 +163,10 @@ public class LCR119_LongestConsecutive {
         System.out.println(r);
         r = alg.solution1(nums1);
         System.out.println(r);
+        r = alg.solutionLeetCode(nums1);
+        System.out.println(r);
+        r = alg.solutionMyLeetCode(nums1);
+        System.out.println(r);
 
 
         System.out.println("======= case 2 =======");
@@ -105,12 +175,20 @@ public class LCR119_LongestConsecutive {
         System.out.println(r);
         r = alg.solution1(nums2);
         System.out.println(r);
+        r = alg.solutionLeetCode(nums2);
+        System.out.println(r);
+        r = alg.solutionMyLeetCode(nums2);
+        System.out.println(r);
 
         System.out.println("======= case 3 =======");
         int[] nums3 = new int[]{1,3,2,0,4,0};
         r = alg.solution0(nums3);
         System.out.println(r);
         r = alg.solution1(nums3);
+        System.out.println(r);
+        r = alg.solutionLeetCode(nums3);
+        System.out.println(r);
+        r = alg.solutionMyLeetCode(nums3);
         System.out.println(r);
     }
 }
