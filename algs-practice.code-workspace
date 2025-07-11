@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": ".leetcode",
+			"path": "../../.leetcode"
+		}
+	],
+	"settings": {
+		"java.test.srcDirs": [
+            "${workspaceFolder}/src/main/java",  // 主项目测试目录
+            "${workspaceFolder:.leetcode}/test"     // .leetcode测试目录
+        ]
+	}
+}

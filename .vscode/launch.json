@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "com.easonchangaf.App",
+            "projectName": "algs-practice"
+        },
+        {
+            "type": "java",
+            "name": "TTest",
+            "request": "launch",
+            "mainClass": "com.easonchangaf.code.TTest",
+            "projectName": "algs-practice"
+        },
+        {
+            "type": "java",
+            "name": "LCR119_LongestConsecutive",
+            "request": "launch",
+            "mainClass": "com.easonchangaf.leetcodeHot100.LCR119_LongestConsecutive",
+            "projectName": "algs-practice"
+        }
+    ],
+    "settings": {
+		"java.test.srcDirs": [
+            "${workspaceFolder}/src/main/java",  // 主项目测试目录
+            "${workspaceFolder:.leetcode}/test"     // .leetcode测试目录
+        ]
+	}
+}
