@@ -95,12 +95,32 @@ public class Q36_IsValidSudoku {
      */
     public boolean solution(char[][] board) {
         // TODO: 请在这里实现您的算法
-        // 提示：
-        // 1. 检查每一行是否包含重复数字
-        // 2. 检查每一列是否包含重复数字  
-        // 3. 检查每个3x3的子网格是否包含重复数字
-        // 4. 空单元格用'.'表示，可以忽略
-        return false;
+        // 特殊处理
+
+        // 数字存储出现的次数
+        // rows[1][1] = 5 说明第一行2出现的次数为5
+        int[][] rows = new int[9][9];
+        // 同 columns
+        int[][] columns = new int[9][9];
+        // cells[1][2][3] = 2 表示第1行2列的正方形中，4出现的次数为2
+        int[][][] cells = new int[3][3][9];
+        for(int i =0; i< 9; i++){
+            for(int j=0; j<9; j++){
+                char c = board[i][j];
+                if('.'==c){
+                    continue;
+                }
+                int number = c - '0';
+                int index = number - 1;
+                rows[i][index]++;
+                columns[j][index]++;
+                cells[i / 3][j / 3][index]++;
+                if(rows[i][index] > 1 || columns[j][index] > 1 || cells[i / 3][j / 3][index] > 1){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     
     // ========== 测试用例 ==========
