@@ -27,7 +27,19 @@ from typing import List
 
 class GroupAnagrams:
     def solution(self, strs: List[str]) -> List[List[str]]:
-        pass
+        # hash表法
+        map = {}
+        
+        for s in strs:
+            key = ''.join(sorted(s))
+            value = map.get(key)
+            if value:
+                value.append(s)
+            else:
+                value=[]
+                value.append(s)
+            map[key] = value
+        return list(map.values())
 
 
 if __name__ == "__main__":
